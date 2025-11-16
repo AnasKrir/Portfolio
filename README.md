@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Portfolio — Anas KRIR
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![React](https://img.shields.io/badge/React-18-blue?logo=react)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38BDF8?logo=tailwindcss)
+![Status](https://img.shields.io/badge/Deploy-Online-success)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-First, run the development server:
+Portfolio personnel développé en **Next.js + React + TailwindCSS**, présentant mes
+compétences, projets, expériences, certifications et coordonnées.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+💼 **Objectif :** Recherche d’un stage de fin d’études de **6 mois à partir de Février 2026**  
+🎓 Étudiant en **5ᵉ année MIAGE – EMSI Rabat**  
+☁️ Intéressé par l’architecture Cloud, le DevOps et le développement Full Stack
+
+🌐 **Portfolio Live :**  
+👉 https://anaskrir.vercel.app/
+
+---
+
+## 📌 Sommaire
+
+1. [Fonctionnalités](#-fonctionnalités)
+2. [Stack technique](#-stack-technique)
+3. [Structure du projet](#-structure-du-projet)
+4. [Développement local](#-développement-local)
+5. [Déploiement](#-déploiement)
+6. [Aperçu](#-aperçu)
+7. [Contact](#-contact)
+8. [Licence](#-licence)
+
+---
+
+## ✅ Fonctionnalités
+
+🎯 Page d’accueil interactive avec effet de **typing animation**  
+🧍 Section **About Me**  
+⚙️ Section **Skills** avec technologies classées  
+💼 Section **Projects** avec tags et badges  
+🧾 Section **Certifications**  
+📞 Section **Contact** avec mail + LinkedIn  
+🌓 Dark / Light Mode (toggle)  
+⬇️ Bouton **Download CV (PDF)** fonctionnel
+
+---
+
+## 🛠️ Stack technique
+
+| Technologie | Utilisation |
+|-------------|-------------|
+| Next.js 16 | Framework React |
+| React 18 | UI Components |
+| TailwindCSS 3 | Design system |
+| TypeScript | Sécurité & typage |
+| Vercel | Déploiement & hosting |
+| Framer Motion | Animations UI |
+
+---
+
+## 🏗️ Structure du projet
+```
+src/
+├─ app/
+│ ├─ page.tsx → Home
+│ ├─ layout.tsx → Root layout
+│ ├─ globals.css → Styles
+│
+├─ components/
+│ ├─ Navbar.tsx
+│ ├─ Footer.tsx
+│ ├─ ProjectCard.tsx
+│ ├─ SkillCard.tsx
+│
+├─ lib/
+│ ├─ data.ts → Liste projets, compétences, certifs
+│
+public/
+├─ cv/Anas_KRIR_CV.pdf → CV export PDF
+└─ images/ → Images & assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧑‍💻 Développement local
 
-## Learn More
+### 1️⃣ Cloner le repo
 
-To learn more about Next.js, take a look at the following resources:
+```
+git clone https://github.com/AnasKrir/Portfolio.git
+cd Portfolio
+```
+### 2️⃣ Installer les dépendances
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3️⃣ Lancer le serveur local
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+➡️ Disponible sur : http://localhost:3000
+
+---
+
+##🚀 Déploiement
+
+Ce portfolio est déployé automatiquement sur Vercel à chaque push GitHub.
+
+Build command :
+
+```
+npm run build
+```
+
+Output :
+
+
+```
+.next
+
+```
+
+➡️ Déploiement Live :
+
+🔗 https://anaskrir.vercel.app/
+
+---
+
+## 📬 Contact
+
+📧 Email : anaskrir9@gmail.com
+
+💼 LinkedIn : https://www.linkedin.com/in/krir-anas/
+
+🐙 GitHub : https://github.com/AnasKrir
+
+---
+
+## 📄 Licence
+
+Projet sous licence MIT.<br/>
+
+🎉 Libre d’utiliser, modifier ou réutiliser le code.
+
+© 2025 — Anas KRIR
+
+---
