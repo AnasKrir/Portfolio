@@ -1,26 +1,860 @@
 @import "tailwindcss";
 
+/* =========================
+   Themes: Mauve (dark | light)
+   ========================= */
+
+/* Default: DARK MAUVE */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0f0a14;
+  --bg-grad-start: #1a0f25;
+  --bg-grad-stop: transparent;
+
+   --overlay-blur: 18px; /* tweak */
+   --overlay-alpha: .35; /* tint opacity 0–1 */
+
+  --panel:   #171222;
+  --panel-2: #1d162b;
+  --border:  #2e2440;
+  --muted:   #b6a8c9;
+
+  --brand:   #a78bfa;
+  --brand-2: #e879f9;
+  --glow:    #c084fc33;
+
+  /* NEW: text tokens */
+  --text:    #ede7f8;  /* body text */
+  --heading: #faf7ff;  /* titles */
+  --link:    #c4b5fd;
+  --link-hover: #e9d5ff;
+  --muted-2: color-mix(in srgb, var(--text) 65%, transparent);
+  --bg-soft: color-mix(in srgb, var(--bg) 70%, black 4%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Light variant */
+html[data-theme="mauve-light"] {
+  --bg: #f8f7fb;
+  --bg-grad-start: #eae3ff;
+  --bg-grad-stop: transparent;
+
+  --panel:   #ffffff;
+  --panel-2: #f5f1ff;
+  --border:  #e1d8f6;
+  --muted:   #6b5a83;
+
+  --brand:   #7c3aed;
+  --brand-2: #c026d3;
+  --glow:    #7c3aed22;
+
+  --text:    #201530;   /* darker text for light bg */
+  --heading: #1a0f25;
+  --link:    #6d28d9;
+  --link-hover: #9333ea;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================
+   Base & Utilities
+   ========================= */
+
+html, body { color: var(--text); }
+
+h1, h2, h3, h4, h5, h6 { color: var(--heading); }
+
+a { color: var(--link); text-underline-offset: 3px; }
+a:hover { color: var(--link-hover); }
+
+.container-l { @apply mx-auto max-w-6xl px-4; }
+
+.h1-grad {
+  @apply text-4xl md:text-5xl font-extrabold tracking-tight text-center;
+  background: linear-gradient(180deg, var(--brand) 0%, var(--brand-2) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.section-sub { @apply text-center mt-2; color: var(--muted); }
+
+.card {
+  @apply rounded-2xl border shadow-[0_0_0_1px_rgba(0,0,0,0.02)];
+  background: var(--panel);
+  border-color: var(--border);
+  color: var(--text);
 }
+.card-glow {
+  box-shadow:
+    0 0 0 1px var(--border) inset,
+    0 10px 30px -12px rgba(0,0,0,.5),
+    0 0 0 2px var(--glow);
+}
+
+.badge { @apply text-xs px-2.5 py-1 rounded-full border; border-color: var(--border); color: var(--text); }
+
+.btn-grad {
+  background: linear-gradient(90deg, var(--brand) 0%, var(--brand-2) 100%);
+  @apply font-medium rounded-xl px-4 py-2;
+  color: white; /* readable on both themes */
+}
+
+/* Ghost button keeps current text color */
+.link-ghost { @apply rounded-xl border px-4 py-2; border-color: var(--border); color: var(--text); }
+
+/* Inputs */
+.input {
+  @apply rounded-lg px-3 py-2 outline-none border transition;
+  background: var(--panel-2);
+  border-color: var(--border);
+  color: var(--text);
+}
+.input::placeholder { color: var(--muted); }
+.input:focus { box-shadow: 0 0 0 2px var(--brand) inset; }
+
+/* Switch */
+.theme-switch {
+  @apply inline-flex items-center gap-2 rounded-full px-2 py-1 border cursor-pointer select-none;
+  border-color: var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+}
+.theme-dot {
+  @apply w-5 h-5 rounded-full;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+}
+
+/* === Switch & Scroll vars (valeurs par défaut : Dark Mauve) === */
+:root {
+  --switch-track: #422745;
+  --switch-ring:  #5a355f;
+  --switch-label: #e8e4f5;
+  --switch-knob-shadow: 0 6px 18px -6px rgba(0,0,0,.5);
+  --switch-knob-grad: linear-gradient(135deg,#4e116c 0%,#d6a2f2 100%);
+
+  --scroll-bg: #0f1a2b;
+  --scroll-ring: #6f5a9a55;
+  --scroll-icon: #efeafb;
+  --scroll-shadow: 0 16px 40px -18px rgba(0,0,0,.6);
+}
+
+/* Variante Light Mauve */
+html[data-theme="mauve-light"]{
+  --switch-track: #e6e3f7;
+  --switch-ring:  #d8d0f3;
+  --switch-label: #231a32;
+
+  /* On garde un knob bleu pour l’effet “iOS” */
+  --switch-knob-shadow: 0 10px 28px -14px rgba(64,113,178,.55);
+
+  /* Scroll button lisible en clair aussi */
+  --scroll-bg: #5a355f;
+  --scroll-ring: #7b61b855;
+  --scroll-icon: #f4efff;
+  --scroll-shadow: 0 18px 40px -16px rgba(80,78,120,.28);
+}
+
+/* ========== SWITCH (pilule bleue) ========== */
+.toggle {
+  display:inline-flex; align-items:center; gap:.5rem;
+  height:36px; width:88px; padding:0 8px; border-radius:999px;
+  border:1px solid var(--switch-ring);
+  background: var(--switch-track);
+  color: var(--switch-label);
+  position:relative; cursor:pointer; user-select:none;
+}
+.toggle-knob{
+  position:absolute; top:50%; left:6px; transform:translate(0,-50%);
+  width:32px; height:32px; border-radius:50%;
+  background: var(--switch-knob-grad);
+  box-shadow: var(--switch-knob-shadow);
+  transition: transform .25s cubic-bezier(.2,.8,.2,1);
+}
+.toggle[data-mode="light"] .toggle-knob{ transform:translate(50px,-50%); }
+.toggle-icon{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:white;
+}
+.toggle-label{ font-size:.85rem; font-weight:600; padding-left:40px; }
+
+/* Small 60x20 */
+.toggle--sm{ height:25px; width:50px; padding:0 3px; }
+.toggle--sm .toggle-knob{ width:25px; height:25px; left:3px; }
+/* distance = 60 - 20 - (3*2) = 34px */
+.toggle--sm[data-mode="light"] .toggle-knob{ transform: translate(17px, -50%); }
+.toggle--sm .toggle-icon svg{ width:15px; height:15px; }
+
+/* ========== SCROLL TO TOP ========== */
+.scroll-btn{
+  position:fixed; right:18px; bottom:18px; z-index:60;
+  width:64px; height:64px; border-radius:999px;
+  background: var(--scroll-bg);
+  border:1px solid var(--switch-ring);
+  box-shadow: var(--scroll-shadow);
+  display:grid; place-items:center;
+  transition: transform .16s ease, box-shadow .2s ease, opacity .2s ease;
+  opacity:0; pointer-events:none;
+}
+.scroll-btn--visible{ opacity:1; pointer-events:auto; }
+.scroll-btn::after{
+  content:""; position:absolute; inset:-6px; border-radius:inherit;
+  box-shadow: 0 0 0 2px var(--scroll-ring);
+}
+.scroll-btn svg{ width:28px; height:28px; color: var(--scroll-icon); }
+.scroll-btn:hover{ transform: translateY(-2px) scale(1.03); cursor: pointer;}
+
+/* --- Caret clignotant pour le typing --- */
+@keyframes caretBlink { 50% { opacity: 0; } }
+.caret {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin-left: 2px;
+  background: var(--heading);
+  vertical-align: -0.1em;
+  animation: caretBlink .9s step-end infinite;
+}
+
+/* --- utilitaires pour fade-up (apparition verticale) --- */
+.fade-up {
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.fade-up.show {
+  opacity: 1; transform: translateY(0);
+}
+
+/* --- NAV: supprimer tout soulignement/baseline et ajouter hover doux --- */
+.nav-link{
+  text-decoration: none;
+  color: var(--heading);
+  opacity: .85;
+  position: relative;
+  transition: color .25s ease, opacity .25s ease, transform .25s ease;
+}
+.nav-link:hover{
+  opacity: 1;
+  color: var(--heading);
+  transform: translateY(-1px);
+}
+.nav-link::after{ content: none !important; }
+
+/* --- Boutons: effet “lift + glow” cohérent --- */
+.btn-raise{
+  transition: transform .2s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+}
+.btn-raise:hover{
+  transform: translateY(-1.5px);
+  box-shadow: 0 10px 24px rgba(120, 80, 200, .25);
+}
+.btn-raise:active{ transform: translateY(0); }
+
+/* Bouton contour (ex: View Projects) */
+.btn-outline{
+  border: 1px solid var(--border);
+  color: var(--heading);
+  background: transparent;
+  border-radius: 12px;
+  padding: .625rem 1rem;
+}
+.btn-outline:hover{
+  border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
+  box-shadow: 0 8px 18px rgba(120, 80, 200, .22);
+}
+
+/* Gradient (Download CV) */
+.btn-grad{
+  transition: transform .2s ease, box-shadow .25s ease, filter .25s ease;
+}
+.btn-grad:hover{
+  transform: translateY(-1.5px);
+  box-shadow: 0 10px 24px rgba(120, 80, 200, .25);
+  filter: brightness(1.03);
+}
+
+/* Lien “ghost” (si utilisé ailleurs) */
+.link-ghost{
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .625rem 1rem;
+  transition: transform .2s ease, border-color .25s ease, box-shadow .25s ease, color .2s ease;
+}
+.link-ghost:hover{
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
+  box-shadow: 0 8px 18px rgba(120, 80, 200, .18);
+  color: var(--heading);
+}
+
+/* Icônes sociales */
+.icon-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+}
+.icon-btn:hover{
+  transform: translateY(-1px) scale(1.03);
+  border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
+  box-shadow: 0 8px 18px rgba(120, 80, 200, .22);
+  background: color-mix(in srgb, var(--panel) 88%, var(--brand) 12%);
+}
+.icon-btn svg{ transition: opacity .2s ease; opacity: .9; }
+.icon-btn:hover svg{ opacity: 1; }
+
+/* Icônes sociales avec le même comportement que .nav-link */
+.nav-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:40px; height:40px;
+  border-radius:10px;            /* même arrondi que le navbar */
+  text-decoration:none;          /* pas de soulignement */
+  /* pas de background ni bordure pour matcher le navbar */
+}
+
+.nav-icon svg{
+  transition: opacity .2s ease, transform .25s ease;
+  opacity:.85;
+}
+
+/* Au survol: exactement comme .nav-link (opacité + petit lift) */
+.nav-icon:hover svg{
+  opacity:1;
+  transform: translateY(-1px);
+}
+
+/* Accessibilité: focus visible harmonisé */
+.nav-link:focus-visible,
+.nav-icon:focus-visible{
+  outline: 2px solid color-mix(in srgb, var(--brand) 60%, var(--border));
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+/* --- Hover Mauve cohérent (navbar + icônes sociales) --- */
+.nav-link,
+.nav-icon{
+  border: 1px solid transparent;
+  border-radius: 12px;
+  transition: color .25s ease, opacity .25s ease, transform .25s ease,
+              border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+/* Utilitaire : applique le style hover mauve */
+.hover-mauve:hover{
+  /* fond mauve léger (fonctionne sur dark & light grâce aux vars) */
+  background: color-mix(in srgb, var(--brand) 16%, transparent);
+  /* bordure mauve subtile */
+  border-color: color-mix(in srgb, var(--brand) 65%, var(--border));
+  /* léger lift + halo mauve */
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(120, 80, 200, .22);
+  color: var(--heading);
+}
+
+/* Focus accessible aligné */
+.nav-link:focus-visible,
+.nav-icon:focus-visible{
+  outline: 2px solid color-mix(in srgb, var(--brand) 60%, var(--border));
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* Garde la couleur de lien seulement pour les liens non-boutons */
+a:not(.btn-grad):not(.btn-outline):not(.link-ghost):not(.nav-link):hover {
+  color: var(--link-hover);
+}
+
+/* Bouton gradient : toujours blanc, y compris au hover/focus/active */
+.btn-grad,
+.btn-grad:hover,
+.btn-grad:focus,
+.btn-grad:active {
+  color: #fff;            /* texte & icône */
+}
+
+/* Assure que l’icône hérite bien du blanc */
+.btn-grad svg {
+  color: currentColor;    /* stroke="currentColor" dans ton SVG → ok */
+}
+
+.btn-grad {
+  transition: transform .2s ease, box-shadow .25s ease, filter .25s ease;
+}
+.btn-grad:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 10px 24px rgba(120, 80, 200, .25);
+  filter: brightness(1.05);
+}
+
+
+/* --- Icône burger qui se transforme en X --- */
+.burger {
+  position: relative;
+  width: 22px; height: 2px;
+  background: var(--heading);
+  transition: transform .25s ease, background .25s ease;
+}
+.burger::before,
+.burger::after{
+  content:""; position:absolute; left:0; right:0; height:2px;
+  background: var(--heading); transition: transform .25s ease, top .25s ease, opacity .2s ease;
+}
+.burger::before{ top:-6px; }
+.burger::after { top: 6px; }
+
+.burger--open { background: transparent; }
+.burger--open::before{ top:0; transform: rotate(45deg); }
+.burger--open::after { top:0; transform: rotate(-45deg); }
+
+/* --- Drawer mobile (slide-in gauche) --- */
+@keyframes slideIn {
+  from { transform: translateX(-100%); opacity: 0.6; }
+  to   { transform: translateX(0);      opacity: 1; }
+}
+.mobile-drawer{
+  position: fixed; inset: 0 auto 0 0;
+  width: 78vw; max-width: 320px; height: 100%;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  box-shadow: 0 24px 60px rgba(0,0,0,.45);
+  animation: slideIn .25s ease both;
+}
+
+/* Option : même hover mauve que la nav partout */
+.nav-link:hover{
+  background: color-mix(in srgb, var(--brand) 18%, transparent);
+  box-shadow: 0 8px 18px rgba(167,139,250,.18);
+  transform: translateY(-1px);
+}
+
+/* Slide-in depuis la DROITE */
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: .6; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+/* Drawer on the right (unchanged, but set a higher z-index than overlay) */
+.mobile-drawer--right{
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: 78vw; max-width: 320px; height: 100%;
+  background: var(--panel);
+  border-left: 1px solid var(--border);
+  box-shadow: 0 24px 60px rgba(0,0,0,.45);
+  animation: slideInRight .25s ease both;
+  z-index: 61; /* sits above .mobile-overlay */
+}
+/* Full-screen overlay that actually blurs the page behind it */
+.mobile-overlay{
+  position: fixed; inset: 0;
+  z-index: 60; /* below the drawer which will be >60 */
+  background: rgba(15,10,20,var(--overlay-alpha)); /* dark mauve tint */
+  -webkit-backdrop-filter: blur(var(--overlay-blur)) saturate(110%);
+  backdrop-filter: blur(var(--overlay-blur)) saturate(110%);
+  /* small compositing hints for Safari/iOS */
+  will-change: backdrop-filter;
+  transform: translateZ(0);
+}
+
+/* ===== Halo mauve autour de l'avatar ===== */
+.avatar-glow{
+  position: relative;
+  isolation: isolate;           /* pour que le ::before reste sous l'image */
+}
+
+/* halo externe flou (dégradé mauve) */
+.avatar-glow::before{
+  content:"";
+  position:absolute; inset:-14px;       /* + grand que l'image */
+  border-radius:9999px;
+  background: conic-gradient(from 0deg,
+               var(--brand),
+               var(--brand-2),
+               var(--brand));
+  filter: blur(18px);
+  opacity:.55;
+  z-index:-1;                           /* sous l'image */
+  animation: avatarSpin 10s linear infinite;
+}
+
+/* fin liseré mauve tout autour (très subtil) */
+.avatar-glow::after{
+  content:"";
+  position:absolute; inset:-2px;
+  border-radius:9999px;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand) 65%, var(--border));
+  z-index:-1;
+  opacity:.8;
+}
+
+@keyframes avatarSpin { to { transform: rotate(360deg); } }
+
+/* Respecte l’accessibilité si l’utilisateur préfère moins d’animations */
+@media (prefers-reduced-motion: reduce){
+  .avatar-glow::before{ animation: none; }
+}
+
+/* --- apparition tardive de la photo (après le typing) --- */
+.hero-photo{
+  opacity: 0;
+  transform: translateY(10px) scale(.96);
+  filter: blur(6px);
+  transition:
+    opacity .7s cubic-bezier(.2,.8,.2,1),
+    transform .7s cubic-bezier(.2,.8,.2,1),
+    filter .6s ease;
+  will-change: opacity, transform, filter;
+}
+.hero-photo.show{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* (option) si l’utilisateur préfère moins d’animations */
+@media (prefers-reduced-motion: reduce){
+  .hero-photo{ transition: none; filter:none; transform:none; opacity:1; }
+}
+
+
+
+/* --- Séparation visuelle des grands cards (comme l'image bleue) --- */
+.section-card{
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.02) inset,
+    0 16px 40px -22px rgba(0,0,0,.55);
+}
+
+
+.section-icon{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:2.25rem; height:2.25rem; border-radius:12px;
+  background: color-mix(in srgb, var(--brand) 28%, transparent);
+}
+
+/* --- Timeline : entièrement contenue dans son card --- */
+.timeline{
+  position: relative;
+  padding-left: 42px;             /* espace pour la ligne + dots */
+}
+/* ligne verticale, top/bottom raccourcis pour ne pas toucher les bords du card */
+.timeline::before{
+  content:"";
+  position:absolute; left:18px; top:8px; bottom:8px; width:2px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--brand) 60%, transparent) 0%,
+    color-mix(in srgb, var(--brand) 35%, transparent) 60%,
+    color-mix(in srgb, var(--brand) 20%, transparent) 100%
+  );
+  border-radius:999px;
+  opacity:.95;
+}
+
+.timeline-item{ position:relative; margin-bottom: 20px; }
+
+/* Dot parfaitement centré sur la ligne */
+.timeline-dot{
+  position:absolute; left:-23px; top:10px; transform: translate(-50%, -50%);
+  width:14px; height:14px; border-radius:999px;
+  background: radial-gradient(circle at 30% 30%, #fff 0 15%, var(--brand) 35%, var(--panel) 70%);
+  border:2px solid color-mix(in srgb, var(--brand) 70%, var(--border));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 25%, transparent);
+}
+
+/* Sous-cards (les “petits” rectangles de la timeline) */
+.timeline-card{
+  margin-left: 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.timeline-card:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(120,80,200,.18);
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--border));
+}
+
+.timeline-card:active{
+  transform: translateY(0);
+}
+
+/* Pastille “5th Year” */
+.badge-pill{
+  display:inline-flex; align-items:center; gap:.4rem;
+  font-size:.75rem; padding:.15rem .5rem; border-radius:999px;
+  color: var(--heading);
+  background: color-mix(in srgb, var(--brand) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand) 55%, var(--border));
+}
+
+/* Lieu */
+.meta{ display:inline-flex; align-items:center; gap:.4rem; color: var(--muted); font-size:.9rem; }
+
+
+/* Le card de section (Profile, etc.) */
+.section-card{
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.02) inset,
+    0 16px 40px -22px rgba(0,0,0,.55);
+  /* transitions comme la timeline */
+  transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+}
+
+/* === Hover identique aux .timeline-card:hover === */
+.section-card:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(120,80,200,.18);
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--border));
+}
+
+/* (optionnel) effet click léger */
+.section-card:active{
+  transform: translateY(0);
+}
+
+/* (optionnel) accessibilité focus clavier */
+.section-card:focus-within{
+  outline: 2px solid color-mix(in srgb, var(--brand) 60%, var(--border));
+  outline-offset: 3px;
+  border-radius: 20px;
+}
+
+/* (optionnel) réduit l'anim si l'utilisateur préfère */
+@media (prefers-reduced-motion: reduce){
+  .section-card, .section-card:hover{ transition: none; }
+}
+
+/* Justify helper for long paragraphs */
+.justify-text,
+.justify-text * {
+  text-align: justify;           /* aligne les deux bords */
+  text-justify: inter-word;      /* répartit les espaces entre mots */
+  hyphens: auto;                 /* césure automatique si dispo */
+}
+
+/* Applique le hover 'mauve' doux aux grandes cards (Profile, Skills, etc.) */
+.card:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(120,80,200,.18);
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--border));
+}
+.card:active{
+  transform: translateY(0);
+}
+
+
+
+/* ===== SKILLS SECTION – fond subtil + cards premium ===== */
+
+/* fond doux derrière toute la section */
+.skills-section{
+  position: relative;
+  isolation: isolate;
+}
+.skills-section::before{
+  content:"";
+  position:absolute; inset:-8% -4% -6%;
+  background:
+    radial-gradient(600px 220px at 10% 0%, color-mix(in srgb, var(--brand) 18%, transparent), transparent 60%),
+    radial-gradient(700px 260px at 90% 10%, color-mix(in srgb, var(--brand-2) 16%, transparent), transparent 65%);
+  filter: blur(6px);
+  opacity:.28; pointer-events:none; z-index:-1;
+}
+
+/* card skill (plus premium que .card) */
+.skill-card{
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--panel) 92%, transparent), color-mix(in srgb, var(--panel) 100%, transparent)),
+    var(--panel);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.02) inset,
+    0 14px 38px -20px rgba(0,0,0,.55);
+  transition: transform .22s ease, box-shadow .28s ease, border-color .25s ease, background .25s ease;
+}
+.skill-card:hover{
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--border));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--brand) 26%, transparent) inset,
+    0 16px 44px -18px rgba(120,80,200,.26);
+}
+
+/* petite bordure lumineuse au survol */
+.skill-card::after{
+  content:"";
+  position:absolute; inset:0; border-radius:18px; pointer-events:none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--brand) 28%, transparent), color-mix(in srgb, var(--brand-2) 28%, transparent));
+  opacity:0; transition: opacity .25s ease;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  padding:1px; -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.skill-card:hover::after{ opacity:.6; }
+
+/* icône “capsule” */
+.skill-icon{
+  display:grid; place-items:center;
+  width:42px; height:42px; border-radius:14px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  color:white; font-size:22px;
+  box-shadow: 0 8px 22px rgba(120,80,200,.35);
+}
+
+/* titre */
+.skill-title{
+  font-weight:700; letter-spacing:.2px;
+}
+
+/* chips (remplace .badge si tu veux ce look) */
+.skill-chip{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.38rem .66rem; border-radius:999px;
+  font-size:.82rem; line-height:1;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  color: var(--text);
+  transition: transform .18s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease, filter .2s ease;
+}
+.skill-chip:hover{
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
+  box-shadow: 0 8px 18px rgba(120,80,200,.18);
+  background: color-mix(in srgb, var(--panel) 82%, var(--brand) 18%);
+  filter: brightness(1.03);
+  cursor: pointer;
+}
+
+/* assure une transition douce pour tous les chips */
+.skill-chip,
+.proj-tag{
+  transition: transform .15s ease, box-shadow .25s ease, border-color .25s ease,
+              background .25s ease, filter .25s ease;
+}
+
+/* apparition progressive des cards */
+@keyframes skillIn { 
+  from { opacity:0; transform: translateY(10px) scale(.98); }
+  to   { opacity:1; transform: translateY(0)     scale(1); }
+}
+.animate-skill{ animation: skillIn .45s cubic-bezier(.2,.8,.2,1) both; }
+
+
+/* ====== SKILLS → KEY HIGHLIGHTS ====== */
+.stats-wrap{ position:relative; margin-top:1.25rem; }
+.stats-card{
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--panel) 92%, transparent),
+      color-mix(in srgb, var(--panel) 100%, transparent));
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.02) inset,
+    0 18px 44px -24px rgba(0,0,0,.55);
+  padding: 18px;
+}
+.stats-title{
+  text-align:center; font-weight:800; letter-spacing:.2px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-size: clamp(1.1rem, .9rem + .8vw, 1.5rem);
+}
+
+/* grille de 3 stats */
+.stats-grid{
+  display:grid; gap:10px; margin-top:8px;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+}
+@media (max-width: 768px){
+  .stats-grid{ grid-template-columns: 1fr; }
+}
+
+/* chaque stat */
+.stat{
+  display:grid; place-items:center; text-align:center;
+  padding: 18px 10px; border-radius: 14px;
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  transition: transform .18s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+}
+.stat:hover{
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--border));
+  box-shadow: 0 12px 28px rgba(120,80,200,.18);
+  background: color-mix(in srgb, var(--panel) 86%, var(--brand) 14%);
+}
+
+/* gros chiffre en dégradé turquoise → mauve */
+.stat-num{
+  font-weight:900;
+  font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem);
+  line-height:1;
+  background: linear-gradient(135deg, #00e6ff, var(--brand));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter: drop-shadow(0 4px 18px rgba(0,230,255,.15));
+}
+.stat-label{
+  margin-top:.4rem; color: var(--muted); font-weight:600;
+}
+
+
+
+/* Expérience — petites retouches */
+.exp-card:hover {
+  box-shadow: 0 20px 50px -18px rgba(0,0,0,.55);
+}
+
+/* Recyclage du hover “skill-chip” pour les tags d’expérience/projet */
+.tag-chip {
+  transition: transform .18s ease, box-shadow .2s ease, border-color .2s ease, filter .2s ease;
+}
+.tag-chip:hover{
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
+  box-shadow: 0 8px 18px rgba(120,80,200,.18);
+  background: color-mix(in srgb, var(--panel) 82%, var(--brand) 18%);
+  filter: brightness(1.03);
+  cursor: pointer;
+}
+
+/* Optionnel: s'assurer que le dot prenne bien le centre */
+@media (min-width:1024px){
+  .timeline-center-col { width: 40px; }
+}
+
+/* globals.css (ou équivalent) */
+.card-glow:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--border));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--brand) 26%, transparent) inset,
+    0 16px 44px -18px rgba(120,80,200,.26);
+}
+
+.card-glow::after{
+  content:"";
+  position:absolute; inset:0; border-radius:18px; pointer-events:none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--brand) 28%, transparent), color-mix(in srgb, var(--brand-2) 28%, transparent));
+  opacity:0; transition: opacity .25s ease;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  padding:1px; -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.card-glow:hover::after{ opacity:.6; }
+
+
+
+
