@@ -106,7 +106,7 @@ npm run dev
 
 ---
 
-##🚀 Déploiement
+## 🚀 Déploiement
 
 Ce portfolio est déployé automatiquement sur Vercel à chaque push GitHub.
 
