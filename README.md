@@ -121,7 +121,6 @@ Output :
 
 ```
 .next
-
 ```
 
 ➡️ Déploiement Live :
