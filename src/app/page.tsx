@@ -211,7 +211,7 @@ function useTypeLines(linesIn: string[], speed = 22) {
   const iRef = useRef(0);
   const jRef = useRef(0);
   const alive = useRef(true);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timer = useRef<number | null>(null);
 
   useEffect(() => {
     alive.current = true;
@@ -256,9 +256,11 @@ function useTypeLines(linesIn: string[], speed = 22) {
     timer.current = window.setTimeout(tick, speed);
 
     return () => {
-      alive.current = false;
-      if (timer.current) clearTimeout(timer.current);
-    };
+  alive.current = false;
+  if (timer.current !== null) {
+    window.clearTimeout(timer.current);
+  }
+};
   }, [lines.length, speed]);
 
   return { typed, done };
