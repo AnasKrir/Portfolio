@@ -323,7 +323,7 @@ function Hero() {
             style={{ transitionDelay: done ? "220ms" : "0ms" }}
           >
             <a
-              href="/cv/Anas_Krir_CV.pdf"
+              href="/cv/Anas_KRIR_CV.pdf"
               download
               className="btn-grad btn-raise inline-flex items-center gap-2"
             >
