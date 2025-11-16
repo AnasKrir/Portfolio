@@ -25,9 +25,8 @@ compétences, projets, expériences, certifications et coordonnées.
 3. [Structure du projet](#-structure-du-projet)
 4. [Développement local](#-développement-local)
 5. [Déploiement](#-déploiement)
-6. [Aperçu](#-aperçu)
-7. [Contact](#-contact)
-8. [Licence](#-licence)
+6. [Contact](#-contact)
+7. [Licence](#-licence)
 
 ---
 
