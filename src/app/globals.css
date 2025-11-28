@@ -861,3 +861,17 @@ a:not(.btn-grad):not(.btn-outline):not(.link-ghost):not(.nav-link):hover {
   padding:1px; -webkit-mask-composite: xor; mask-composite: exclude;
 }
 .card-glow:hover::after{ opacity:.6; }
+
+/* Bouton Download CV : gradient différent en dark / light */
+
+/* Dark mode (par défaut, quand data-theme != mauve-light) */
+html:not([data-theme="mauve-light"]) .btn-grad {
+  background: linear-gradient(90deg, #020617, #111827); /* bleu nuit très foncé */
+  color: #fff; /* texte + icône toujours blancs */
+}
+
+/* Light mode : on garde le style actuel foncé */
+html[data-theme="mauve-light"] .btn-grad {
+  background: linear-gradient(90deg, #111827, #374151);
+  color: #fff;
+}
