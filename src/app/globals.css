@@ -4,53 +4,86 @@
    Themes: Mauve (dark | light)
    ========================= */
 
-/* Default: DARK MAUVE */
+/* Default: DARK GREY */
 :root {
-  --bg: #0f0a14;
-  --bg-grad-start: #1a0f25;
+  --bg: #050505;              /* fond gris très foncé */
+  --bg-grad-start: #111111;   /* halo gris plus clair */
   --bg-grad-stop: transparent;
 
-   --overlay-blur: 18px; /* tweak */
-   --overlay-alpha: .35; /* tint opacity 0–1 */
+  --overlay-blur: 18px;
+  --overlay-alpha: .35;
 
-  --panel:   #171222;
-  --panel-2: #1d162b;
-  --border:  #2e2440;
-  --muted:   #b6a8c9;
+  --panel:   #050505;
+  --panel-2: #111111;
+  --border:  #27272a;         /* gris moyen */
+  --muted:   #9ca3af;         /* texte secondaire gris */
 
-  --brand:   #a78bfa;
-  --brand-2: #e879f9;
-  --glow:    #c084fc33;
+  --brand:   #e5e7eb;         /* gris clair comme couleur d'accent */
+  --brand-2: #d4d4d8;
+  --glow:    #e5e7eb33;
 
-  /* NEW: text tokens */
-  --text:    #ede7f8;  /* body text */
-  --heading: #faf7ff;  /* titles */
-  --link:    #c4b5fd;
-  --link-hover: #e9d5ff;
+  --text:    #f5f5f5;         /* texte principal */
+  --heading: #fafafa;         /* titres presque blancs */
+  --link:        #e5e7eb;
+  --link-hover:  #ffffff;
   --muted-2: color-mix(in srgb, var(--text) 65%, transparent);
   --bg-soft: color-mix(in srgb, var(--bg) 70%, black 4%);
+
+  /* Switch – DARK */
+  --switch-track: #18181b;                        /* rail gris foncé */
+  --switch-ring:  #3f3f46;                        /* halo gris */
+  --switch-label: #e5e5e5;                        /* texte clair */
+
+  --switch-knob-shadow: 0 6px 18px -6px rgba(0,0,0,.55);
+  --switch-knob-grad: linear-gradient(
+    135deg,
+    #a1a1aa 0%,                                    /* gris moyen */
+    #e5e5e5 100%                                   /* gris clair */
+  );
+
+  /* Scroll button – DARK */
+  --scroll-bg: #111111;                           /* bouton gris foncé */
+  --scroll-ring: #3f3f4655;                       /* halo gris */
+  --scroll-icon: #f9fafb;                         /* icône claire */
+  --scroll-shadow: 0 16px 40px -18px rgba(0,0,0,.7);
 }
 
-/* Light variant */
+
+
+/* Light variant: LIGHT GREY */
 html[data-theme="mauve-light"] {
-  --bg: #f8f7fb;
-  --bg-grad-start: #eae3ff;
+  --bg: #f5f5f5;              /* fond gris très clair */
+  --bg-grad-start: #e5e5e5;
   --bg-grad-stop: transparent;
 
   --panel:   #ffffff;
-  --panel-2: #f5f1ff;
-  --border:  #e1d8f6;
-  --muted:   #6b5a83;
+  --panel-2: #f4f4f5;
+  --border:  #d4d4d8;
+  --muted:   #6b7280;
 
-  --brand:   #7c3aed;
-  --brand-2: #c026d3;
-  --glow:    #7c3aed22;
+  --brand:   #111827;         /* accent gris très foncé */
+  --brand-2: #374151;
+  --glow:    #11182715;
 
-  --text:    #201530;   /* darker text for light bg */
-  --heading: #1a0f25;
-  --link:    #6d28d9;
-  --link-hover: #9333ea;
+  --text:    #111827;         /* texte foncé */
+  --heading: #020617;
+  --link:        #111827;
+  --link-hover:  #000000;
+
+  /* Switch – LIGHT */
+  --switch-track: #e5e5e5;                        /* rail gris clair */
+  --switch-ring:  #d4d4d8;                        /* halo gris */
+  --switch-label: #111827;                        /* texte foncé */
+
+  --switch-knob-shadow: 0 10px 28px -14px rgba(0,0,0,.25);
+
+  /* Scroll button – LIGHT */
+  --scroll-bg: #3f3f46;                           /* bouton gris moyen */
+  --scroll-ring: #a1a1aa55;                       /* halo gris */
+  --scroll-icon: #f9fafb;                         /* icône claire */
+  --scroll-shadow: 0 18px 40px -16px rgba(63,63,70,.35);
 }
+
 
 /* =========================
    Base & Utilities
@@ -121,35 +154,9 @@ a:hover { color: var(--link-hover); }
   background: linear-gradient(135deg, var(--brand), var(--brand-2));
 }
 
-/* === Switch & Scroll vars (valeurs par défaut : Dark Mauve) === */
-:root {
-  --switch-track: #422745;
-  --switch-ring:  #5a355f;
-  --switch-label: #e8e4f5;
-  --switch-knob-shadow: 0 6px 18px -6px rgba(0,0,0,.5);
-  --switch-knob-grad: linear-gradient(135deg,#4e116c 0%,#d6a2f2 100%);
 
-  --scroll-bg: #0f1a2b;
-  --scroll-ring: #6f5a9a55;
-  --scroll-icon: #efeafb;
-  --scroll-shadow: 0 16px 40px -18px rgba(0,0,0,.6);
-}
 
-/* Variante Light Mauve */
-html[data-theme="mauve-light"]{
-  --switch-track: #e6e3f7;
-  --switch-ring:  #d8d0f3;
-  --switch-label: #231a32;
 
-  /* On garde un knob bleu pour l’effet “iOS” */
-  --switch-knob-shadow: 0 10px 28px -14px rgba(64,113,178,.55);
-
-  /* Scroll button lisible en clair aussi */
-  --scroll-bg: #5a355f;
-  --scroll-ring: #7b61b855;
-  --scroll-icon: #f4efff;
-  --scroll-shadow: 0 18px 40px -16px rgba(80,78,120,.28);
-}
 
 /* ========== SWITCH (pilule bleue) ========== */
 .toggle {
@@ -854,7 +861,3 @@ a:not(.btn-grad):not(.btn-outline):not(.link-ghost):not(.nav-link):hover {
   padding:1px; -webkit-mask-composite: xor; mask-composite: exclude;
 }
 .card-glow:hover::after{ opacity:.6; }
-
-
-
-
