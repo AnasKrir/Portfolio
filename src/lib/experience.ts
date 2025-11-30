@@ -4,12 +4,12 @@ export const experience = [
   {
    
     company :"ACHMA SERVICE Company",
-    role:"Intern — Cloud Development and Deployment (G Stock)",
+    role:"Intern — Development and Deployment (G Stock)",
     period:"July 2025 – August 2025",
     location:"Kénitra, Morocco",
     start:"2025-07",                    // <— ajoute ça
     bullets:[ 
-      "Cloud development and deployment of a web app for managing agricultural supply stocks and orders.",
+      "Development and deployment of a web app for managing agricultural supply stocks and orders.",
       "Migration from paper to digital with simple reporting.",
       "Setting up Spring Security (roles) and JPA/Hibernate persistence." 
     ],
