@@ -56,10 +56,7 @@ const skills = [
       "GitHub",
       "Docker",
       "Render",
-      "Kubernetes ",
-      "OpenShift ",
       "CI/CD",
-      "Microsoft Azure",
       "Vercel",
     ],
   },
@@ -71,56 +68,9 @@ const skills = [
   {
     title: "Methodologies & Patterns",
     icon: "🧭",
-    tags: ["MVC", "REST APIs", "Agile / Scrum", "POO", "TDD", "Design Patterns", "UML","Merise"],
+    tags: ["MVC", "REST APIs", "Agile / Scrum", "POO", "Design Patterns", "UML","Merise"],
   },
 ];
-
-
-
-
-
-
-
-// Compte les tags d'un groupe de skills (le tableau `skills` doit être au scope module)
-const get = (title: string) =>
-  (skills.find(s => s.title === title)?.tags.length) ?? 0;
-
-function SkillHighlights() {
-  const get = (title: string) => skills.find((s) => s.title === title)?.tags.length ?? 0;
-
-  const languages  = get("Programming Languages");
-  const frameworks =
-    get("Frameworks & Libraries") + get("Backend & APIs") + get("Web & Mobile Technologies");
-  const dataCloud  =
-    (get("Databases & Data Systems") || get("Databases & Data")) + get("Cloud & DevOps");
-
-  const items = useMemo(
-    () => [
-      { value: Math.max(languages, 1), label: "Programming Languages" },
-      { value: Math.max(frameworks, 1), label: "Frameworks & Libraries" },
-      { value: Math.max(dataCloud, 1), label: "Database & Cloud Tools" },
-    ],
-    [languages, frameworks, dataCloud]
-  );
-
-  return (
-    <div className="stats-wrap">
-      <div className="stats-card">
-        <h4 className="stats-title">Key Highlights</h4>
-        <div className="stats-grid">
-          {items.map((it) => (
-            <div key={it.label} className="stat">
-              {/* ← compteur animé */}
-              <StatNumber value={it.value} suffix="+" />
-              <div className="stat-label">{it.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 
 
 
@@ -144,57 +94,7 @@ function useInView<T extends HTMLElement>(opts: IntersectionObserverInit = { thr
 
 
 
-/** Easing pour un rendu plus doux */
-const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
-/** Hook count-up */
-function useCountUp(target: number, { duration = 1200, start = false } = {}) {
-  const [value, setValue] = useState(0);
-  const started = useRef(false);
-
-  useEffect(() => {
-    if (!start || started.current) return;
-    started.current = true;
-
-    // Accessibilité : pas d’animation si reduced motion
-    const preferNoMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (preferNoMotion || duration <= 0) {
-      setValue(target);
-      return;
-    }
-
-    let raf = 0;
-    const t0 = performance.now();
-
-    const tick = (now: number) => {
-      const p = Math.min(1, (now - t0) / duration);
-      setValue(Math.round(target * easeOutCubic(p)));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [target, duration, start]);
-
-  return value;
-}
-
-
-
-/** Affichage d’un nombre animé avec suffixe (ex: “+”) */
-function StatNumber({ value, suffix = "+" }: { value: number; suffix?: string }) {
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.4 });
-  const n = useCountUp(value, { duration: 1200, start: inView });
-  return (
-    <div ref={ref} className="stat-num">
-      {n}
-      {suffix}
-    </div>
-  );
-}
 
 
 
@@ -277,7 +177,7 @@ function useTypeLines(linesIn: string[], speed = 22) {
 
 function Hero() {
   const LINES = useMemo(
-    () => ["Hi, I’m Anas KRIR —", "Full-Stack & Cloud Engineering Student"],
+    () => ["Hi, I’m Anas KRIR —", "Full-Stack Engineering Student"],
     []
   );
   const { typed, done } = useTypeLines(LINES, 20);
@@ -311,7 +211,7 @@ function Hero() {
             }`}
             style={{ transitionDelay: done ? "120ms" : "0ms" }}
           >
-            I design and develop scalable web applications, cloud-ready architectures and data-driven
+            I design and develop scalable web applications and data-driven
             software solutions. Currently in my 5th year of MIAGE engineering at EMSI Rabat, I’m seeking
             a 6-month end-of-study internship starting <b>February 2026</b>.
           </p>
@@ -438,16 +338,16 @@ export default function OnePage(){
               <p className="justify-text mt-2 text-[var(--muted)] text-[15.5px] leading-7 md:text-base">
 
                     I’m a final-year Software Engineering student at EMSI Rabat (MIAGE) focused on
-                    full-stack, cloud-ready, and data-driven applications. I enjoy turning ideas
-                    into clean, reliable software through solid architecture and thoughtful automation.
+                    full-stack, and data-driven applications. I enjoy turning ideas
+                    into clean, reliable software through a solid code architecture.
                     <span className="block mt-4">
-                      I’ve delivered projects from cloud stock management and real-time web platforms
+                      I’ve delivered projects from stock management and real-time web platforms
                       to desktop tools, using Java/Spring Boot, Python/Django, ASP.NET, Flutter,
                       Docker, and Power BI.
                     </span>
                     <span className="block mt-4">
                       I care about scalability, performance, and product value, with strong habits
-                      in DevOps, data engineering, and code quality (production-ready, maintainable code).
+                      in code quality (production-ready, maintainable code).
                     </span>
                     <span className="block mt-4">
                       Curious, detail-oriented, and growth-driven, I’m seeking a 6-month end-of-studies
@@ -566,11 +466,7 @@ export default function OnePage(){
                       ))}
                       </div>
 
-                        {/* 👉 Le bloc stats occupe toute la ligne */}
-
-                        <div className="md:col-span-2 lg:col-span-3">
-                          <SkillHighlights />
-                        </div>
+                      
                   </div>
         </Section>
 
