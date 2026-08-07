@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import type { Project } from "@/lib/types";
 import { ProjectCard } from "@/components/ProjectCard";
 
-const TABS = ["All", "Web Apps", "Data Projects", "Mobile Apps", "Desktop Apps", "Console Apps"] as const;
+const TABS = ["All", "Web Apps", "Data Projects", "Mobile Apps", "Desktop Apps", "Console Apps", "Data & AI"] as const;
 
 export function ProjectGallery({ items }: { items: Project[] }) {
   const [tab, setTab] = useState<(typeof TABS)[number]>("All");
