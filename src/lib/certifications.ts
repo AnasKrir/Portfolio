@@ -97,5 +97,11 @@ export const CERTS: Certificate[] = [
     pdf: "/certs/Unix.pdf",
     thumb: "/certs/Unix.jpg",
   },
+  {
+    title: "Honoris 21st Century Soft Skills Certificate",
+    org: "Honoris Online Academy",
+    pdf: "/certs/Honoris.pdf",
+    thumb: "/certs/Honoris.jpg",
+  },
   
 ];

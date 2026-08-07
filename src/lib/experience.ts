@@ -2,6 +2,31 @@
 
 export const experience = [
   {
+  company: "DXC Technology",
+  role: "PFE Intern — Development of StartUp Connect AI",
+  period: "February 2026 – August 2026",
+  location: "Technopolis, Sala Al Jadida, Morocco",
+  start: "2026-02",
+  bullets: [
+    "Development of StartUp Connect AI, a Data & AI web application for discovering and recommending Moroccan startups based on expressed business needs.",
+    "Implementation of conversational search, hybrid SQL + vector matching, multi-criteria scoring, and explainable recommendations.",
+    "Development of data pipelines including startup scraping, enrichment, deduplication, feedback collection, and analytics.",
+    "Deployment and containerization of the application using Docker, PostgreSQL/pgvector, and Azure.",
+  ],
+  stack: [
+    "Next.js",
+    "TypeScript",
+    "Python",
+    "FastAPI",
+    "PostgreSQL",
+    "pgvector",
+    "OpenAI API",
+    "Docker",
+    "Azure",
+    "Git/GitHub",
+  ]
+  },
+  {
    
     company :"ACHMA SERVICE Company",
     role:"Intern — Development and Deployment (G Stock)",

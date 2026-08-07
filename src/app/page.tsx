@@ -58,6 +58,7 @@ const skills = [
       "Render",
       "CI/CD",
       "Vercel",
+      "Azure",
     ],
   },
   {
@@ -177,7 +178,7 @@ function useTypeLines(linesIn: string[], speed = 22) {
 
 function Hero() {
   const LINES = useMemo(
-    () => ["Hi, I’m Anas KRIR —", "Full-Stack Engineering Student"],
+    () => ["Hi, I’m Anas KRIR —", "Full-Stack Engineer"],
     []
   );
   const { typed, done } = useTypeLines(LINES, 20);
@@ -211,9 +212,8 @@ function Hero() {
             }`}
             style={{ transitionDelay: done ? "120ms" : "0ms" }}
           >
-            I design and develop scalable web applications and data-driven
-            software solutions. Currently in my 5th year of MIAGE engineering at EMSI Rabat, I’m seeking
-            a 6-month end-of-study internship starting <b>February 2026</b>.
+            I design and develop scalable web applications and data-driven software solutions. 
+            Having completed my MIAGE engineering degree at EMSI Rabat, I’m currently seeking a full-time opportunity where I can leverage my skills in software development, data, and AI to build impactful and scalable solutions.
           </p>
 
           <div
@@ -336,24 +336,24 @@ export default function OnePage(){
 
 
               <p className="justify-text mt-2 text-[var(--muted)] text-[15.5px] leading-7 md:text-base">
+                  I’m a Software Engineering graduate from EMSI Rabat (MIAGE), specializing in
+                  full-stack development and data-driven applications. I enjoy turning ideas
+                  into clean, reliable, and scalable software through solid architecture and
+                  maintainable code.
 
-                    I’m a final-year Software Engineering student at EMSI Rabat (MIAGE) focused on
-                    full-stack, and data-driven applications. I enjoy turning ideas
-                    into clean, reliable software through a solid code architecture.
-                    <span className="block mt-4">
-                      I’ve delivered projects from stock management and real-time web platforms
-                      to desktop tools, using Java/Spring Boot, Python/Django, ASP.NET, Flutter,
-                      Docker, and Power BI.
-                    </span>
-                    <span className="block mt-4">
-                      I care about scalability, performance, and product value, with strong habits
-                      in code quality (production-ready, maintainable code).
-                    </span>
-                    <span className="block mt-4">
-                      Curious, detail-oriented, and growth-driven, I’m seeking a 6-month end-of-studies
-                      internship starting <b>February 2026</b> to contribute to impactful products
-                      alongside an innovative team.
-                    </span>
+                  <span className="block mt-4">
+                    I’ve worked on projects ranging from stock management systems and real-time
+                    web platforms to desktop applications, using technologies such as
+                    Java/Spring Boot, Python/Django, ASP.NET, Flutter, Docker, and Power BI.
+                  </span>
+
+                  <span className="block mt-4">
+                    I’m passionate about building high-quality software with a strong focus on
+                    scalability, performance, and business value. Curious, detail-oriented,
+                    and growth-driven, I’m currently seeking a full-time opportunity where I
+                    can contribute to impactful products and continue growing alongside an
+                    innovative team.
+                  </span>
                 </p>
 
     </article>
@@ -378,13 +378,13 @@ export default function OnePage(){
           <div className="timeline timeline--standalone mt-6">
 
 
-            {/* 2023 — Present */}
+            {/* 2023 — 2026 */}
 
             <div className="timeline-item">
               <span className="timeline-dot" />
               <div className="timeline-card">
                 <div className="flex items-center gap-3 mb-2 text-sm text-[var(--muted)]">
-                  <span>2023 — Present</span>
+                  <span>2023 — 2026</span>
                   <span className="badge-pill">5th Year</span>
                 </div>
                 <h4 className="font-semibold leading-snug text-lg md:text-xl">
