@@ -128,7 +128,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "DW-Construction — BI Dashboard",
-    category: "Data Projects",
+    category: "Data & AI",
     description:
       "Data warehouse + Power BI dashboards (KPI, maps, slicers) with star schema.",
     image: "/images/projets/dw.jpg",

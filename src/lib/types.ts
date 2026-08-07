@@ -1,6 +1,6 @@
 export type Project = {
   title: string;
-  category: "Web Apps" | "Data Projects" | "Mobile Apps" | "Desktop Apps" | "Console Apps" | "Data & AI";
+  category: "Web Apps" | "Mobile Apps" | "Desktop Apps" | "Console Apps" | "Data & AI";
   description: string;
   image: string;
   icon: string;
