@@ -8,6 +8,18 @@ export type Certificate = {
 
 export const CERTS: Certificate[] = [
   {
+    title: "Advanced Spring Cloud Microservices & Deployment with Docker",
+    org: "packt",
+    pdf: "/certs/MS.pdf",
+    thumb: "/certs/MS.jpg",
+  },
+  {
+    title: "Machine Learning with Python",
+    org: "IBM",
+    pdf: "/certs/ML.pdf",
+    thumb: "/certs/ML.jpg",
+  },
+  {
     title: "Virtual Networks in Azure",
     org: "WHIZLABS",
     pdf: "/certs/Azure.pdf",
@@ -96,6 +108,18 @@ export const CERTS: Certificate[] = [
     org: "Johns Hopkins University",
     pdf: "/certs/Unix.pdf",
     thumb: "/certs/Unix.jpg",
+  },
+    {
+    title: "La recherche documentaire",
+    org: "Institut Polytechnique de Paris",
+    pdf: "/certs/recherche.pdf",
+    thumb: "/certs/recherche.jpg",
+  },
+    {
+    title: "The Arduino Platform and C Programming",
+    org: "UC Irvine",
+    pdf: "/certs/Arduino.pdf",
+    thumb: "/certs/Arduino.jpg",
   },
   {
     title: "Honoris 21st Century Soft Skills Certificate",
