@@ -9,9 +9,6 @@
 Portfolio personnel développé en **Next.js + React + TailwindCSS**, présentant mes
 compétences, projets, expériences, certifications et coordonnées.
 
-💼 **Objectif :** Recherche d’un stage de fin d’études de **6 mois à partir de Février 2026**  
-🎓 Étudiant en **5ᵉ année MIAGE – EMSI Rabat**  
-☁️ Intéressé par l’architecture Cloud, le DevOps et le développement Full Stack
 
 🌐 **Portfolio Live :**  
 👉 https://anaskrir.vercel.app/
